@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Nunito", sans-serif;
+  --color-teal: #1a535c;
+  --color-ink: #243c40;
+  --color-muted: #52696c;
+  --color-butter: #ffe9a7;
+  --color-mint: #e1f3e9;
+  --color-coral: #ff6b6b;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    min-width: 320px;
+    color: var(--color-ink);
+    background: linear-gradient(145deg, #fff9f0 20%, #f5f8ec 58%, #e8f8f5);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button, a {
+    touch-action: manipulation;
+  }
+
+  button:not(:disabled), a { cursor: pointer; }
+  button:disabled { cursor: wait; opacity: 0.7; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-teal);
+    outline-offset: 5px;
+  }
+}
+
+.welcome-card {
+  box-shadow: 0 18px 60px -24px rgb(26 83 92 / 18%);
+  animation: arrive 400ms ease-out;
+}
+
+.student-card {
+  box-shadow: 0 5px 0 #dce6de, 0 10px 24px -12px rgb(26 83 92 / 15%);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.student-card:active {
+  transform: translateY(4px) scale(0.98);
+  border-color: var(--color-teal);
+  box-shadow: 0 1px 0 #dce6de;
+}
+
+@media (hover: hover) {
+  .student-card:hover { border-color: #8cb8ab; }
+}
+
+.emotion-card {
+  box-shadow: 0 5px 0 rgb(36 60 64 / 12%), 0 10px 24px -12px rgb(26 83 92 / 15%);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.emotion-card:active {
+  transform: translateY(4px) scale(0.98);
+}
+
+.emotion-card[aria-pressed="true"] {
+  border-color: var(--color-teal);
+  box-shadow: 0 2px 0 var(--color-teal);
+}
+
+.teacher-page { background: #f7f9fa; }
+.teacher-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 1.5rem; box-shadow: 0 8px 26px -18px rgb(26 83 92 / 20%); }
+
+/* Headings announce route changes without becoming extra keyboard tab stops. */
+.page-heading:focus { outline: none; }
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  padding: 16px 24px;
+  border-radius: 16px;
+  background: white;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@keyframes arrive {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
