@@ -1,6 +1,7 @@
 import { Sprout } from 'lucide-react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { lazy, Suspense, type ReactNode } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 const StudentSelectPage = lazy(() => import('./pages/StudentSelectPage'))
 const EmotionCheckInPage = lazy(() => import('./pages/EmotionCheckInPage'))
 const CheckInCompletePage = lazy(() => import('./pages/CheckInCompletePage'))
@@ -64,6 +65,7 @@ export default function App() {
         </main>
         <footer className="px-6 py-5 text-center text-sm font-semibold text-muted">Pip · A gentle start to the day</footer>
       </div>
+      <Analytics />
       </AuthProvider>
     </BrowserRouter>
   )
